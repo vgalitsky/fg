@@ -1,0 +1,324 @@
+<style>
+    #wio-progress{
+        display:none;
+        font-size:14px;
+        position:absolute;
+        border:2px solid silver;
+        background-color:#fff;
+        padding:10px;
+        width:480px;
+    }
+    #wio-overlay{
+        height:100%;
+        width:100%;
+        opacity:0.5;
+        display:block;
+        background-color:#333;
+    }
+</style>
+<div id="wio-overlay"></div>
+<div id="wio-progress" >
+    <h2>Importing Smiffys Products</h2>
+    <div class="bar" id="wio-bar">
+	<span></span>
+    </div>
+    <div id="wio-progress-totals">
+        <table cellpadding="10" cellspacing="10">
+            <tr>
+                <td><?php echo $this->__('Last Product:')?></td>
+                <td style="font-weight:bold;" id="wio-progress-totals-current"></td>
+            </tr>
+            <tr style="color:darkblue" >
+                <td style="width:150px;""><?php echo $this->__('Total:')?></td>
+                <td  id="wio-progress-totals-total"></td>
+            </tr>
+            <tr style="color:darkcyan">
+                <td style="width:150px;""><?php echo $this->__('Limit:')?></td>
+                <td  id="wio-progress-totals-limit">
+                    <?php echo Mage::getStoreConfig('wiosmiffys/import_product/limit') ?>
+                </td>
+            </tr>
+            
+            <tr style="color:blue">
+                <td><?php echo $this->__('Processed:')?></td>
+                <td  id="wio-progress-totals-processed"></td>
+            </tr>
+            <tr style="color:green">
+                <td><?php echo $this->__('Success:')?></td>
+                <td  id="wio-progress-totals-imported"></td>
+            </tr>
+            <tr style="color:darkorchid">
+                <td><?php echo $this->__('Already exists:')?></td>
+                <td  id="wio-progress-totals-exists"></td>
+            </tr>
+            <tr style="color:darkorange">
+                <td><?php echo $this->__('Warnings:')?></td>
+                <td  id="wio-progress-totals-warnings"></td>
+            </tr>
+            <tr style="color:red">
+                <td><?php echo $this->__('Errors:')?></td>
+                <td  id="wio-progress-totals-errors"></td>
+            </tr>
+        </table>
+    </div>
+    <button class="button disabled" style="float:right;" id="wio-import-close-button" onclick="wio_closePopup()"><span><?php echo $this->__('Close')?></span></button>
+    &nbsp;&nbsp;
+    <button class="button disabled" style="float:right;" id="wio-import-finish-button" onclick="location.href='<?php echo $this->getUrl('adminhtml/catalog_product/') ?>'"><span><?php echo $this->__('Product Management')?></span></button>
+</div>
+
+<script>
+var statusPattern = {
+    product_import :{
+        totals : ''
+    }
+}
+
+var smiffysImportPopup = function(){
+    var elt         = $('wio-progress');
+    elt.center();
+    var elt1         = $('wio-overlay');
+    elt1.overlay();
+}
+
+var smiffysProductImportStatus = function(  ){
+    new Ajax.Request('<?php echo $this->getUrl('*/wiosmiffys/productImportStatus')?>',{
+        method:'post',
+        
+        postBody: "form_key=<?php echo Mage::getSingleton('core/session')->getFormKey() ?>"
+                 +"&pattern="+ JSON.stringify( statusPattern )
+            ,
+        loaderArea: false,
+        onSuccess: function( response ){
+            try{
+                var status = JSON.parse(response.responseText);
+                smiffysUpdateStatusUI( status );
+                if( status.product_import.totals.lock ){
+                    setTimeout( smiffysProductImportStatus, 
+                    <?php 
+                        $refresh = Mage::getStoreConfig('wiosmiffys/import_product/limit');
+                        echo $refresh ? $refresh : '1000';
+                    ?>
+                );    
+                }
+                else{
+                    $('wio-import-finish-button').removeClassName('disabled');
+                    $('wio-import-close-button').removeClassName('disabled');
+                    $('wio-bar').setStyle({display:'none'});
+
+                }
+            }catch(e) {}
+            
+        },
+        onLoading: function (){},
+        onInteractive: function(){},
+        onUninitialized: function(){},
+        onCreate: function(){}
+    });
+}
+
+var smiffysUpdateStatusUI = function( status ){
+    for ( var type in status.product_import.totals ){
+        if($('wio-progress-totals-'+type))
+            $('wio-progress-totals-'+type).update( status.product_import.totals[type] );
+    }
+    
+}
+
+var smiffysProductImport = function(){
+  new Ajax.Request('/admin/wiosmiffys/ajaxImportProducts',{
+    method: 'post',
+    
+    onSuccess: function(response){
+        smiffysImportPopup();
+	setTimeout( smiffysProductImportStatus , 2000 );
+    }
+  });
+}
+
+var wio_closePopup = function(){
+    $('wio-progress').setStyle({display:'none'});
+    $('wio-overlay').setStyle({display:'none'});
+}
+
+
+var ElementExtensions= {
+		center: function ( element, limitX, limitY )
+		{
+			element = $(element);
+			
+			var elementDims = element.getDimensions();
+			var viewPort = document.viewport.getDimensions();
+			var offsets = document.viewport.getScrollOffsets();
+			var centerX = viewPort.width / 2 /*+ offsets.left*/ - elementDims.width / 2;
+			var centerY = viewPort.height / 2 /*+ offsets.top*/ - elementDims.height / 2;
+			if ( limitX && centerX < limitX )
+			{
+				centerX = parseInt(limitX);
+			}
+			if ( limitY && centerY < limitY )
+			{
+				centerY = parseInt(limitY);
+			}
+			
+			element.setStyle( { display:'block',position: 'fixed', top: Math.floor(centerY) + 'px', left: Math.floor(centerX) + 'px' } );
+			
+			return element;			
+		},
+		overlay: function ( element )
+		{
+			element = $(element);
+			
+			var elementDims = element.getDimensions();
+			var viewPort = document.viewport.getDimensions();
+			var offsets = document.viewport.getScrollOffsets();
+			var viewPortWidth = viewPort.width;
+			var viewPortHeight = viewPort.height;
+			
+			element.setStyle( { display:'block',position: 'fixed', top: '0px', left: '0px', height: viewPortHeight+'px', width: viewPortWidth+'px'} );
+			
+			return element;			
+		}
+	}
+Element.addMethods(ElementExtensions);
+
+</script>
+
+
+<style>
+/* 
+Set the container for the bar
+*/
+.bar {
+	height:20px;
+	width:470px;
+	/*padding:10px;*/
+	/*margin:200px auto 0;*/
+	background-color:rgba(0,0,0,.1);
+	-webkit-border-radius:25px;
+	-moz-border-radius:25px;
+	-ms-border-radius:25px;
+	border-radius:20px;
+	-webkit-box-shadow:0 1px 0 rgba(255,255,255,.03),inset 0 1px 0 rgba(0,0,0,.1);
+	-moz-box-shadow:0 1px 0 rgba(255,255,255,.03),inset 0 1px 0 rgba(0,0,0,.1);
+	-ms-box-shadow:0 1px 0 rgba(255,255,255,.03),inset 0 1px 0 rgba(0,0,0,.1);
+	box-shadow:0 1px 0 rgba(255,255,255,.03),inset 0 1px 0 rgba(0,0,0,.1);
+}
+
+/* 
+This is the actual bar with stripes
+*/	
+.bar span {
+	display:inline-block;
+	height:100%;
+	width:100%;
+	border:1px solid #ff9a1a;
+	border-bottom-color:#ff6201;
+	background-color:#d3d3d3;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	-ms-border-radius:20px;
+	border-radius:20px;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	box-sizing:border-box;
+	background-image:
+		-webkit-linear-gradient(
+		-45deg,
+		rgba(255, 154, 26, 1) 25%,
+		transparent 25%,
+		transparent 50%,
+		rgba(255, 154, 26, 1) 50%,
+		rgba(255, 154, 26, 1) 75%,
+		transparent 75%,
+		transparent
+	);
+	background-image:
+		-moz-linear-gradient(
+		-45deg,
+		rgba(255, 154, 26, 1) 25%,
+		transparent 25%,
+		transparent 50%,
+		rgba(255, 154, 26, 1) 50%,
+		rgba(255, 154, 26, 1) 75%,
+		transparent 75%,
+		transparent
+	);
+	background-image:
+		-ms-linear-gradient(
+		-45deg,
+		rgba(255, 154, 26, 1) 25%,
+		transparent 25%,
+		transparent 50%,
+		rgba(255, 154, 26, 1) 50%,
+		rgba(255, 154, 26, 1) 75%,
+		transparent 75%,
+		transparent
+	);
+	background-image:
+		linear-gradient(
+		-45deg,
+		rgba(255, 154, 26, 1) 25%,
+		transparent 25%,
+		transparent 50%,
+		rgba(255, 154, 26, 1) 50%,
+		rgba(255, 154, 26, 1) 75%,
+		transparent 75%,
+		transparent
+	);
+	-webkit-background-size:50px 50px;
+	-moz-background-size:50px 50px;
+	-ms-background-size:50px 50px;
+	background-size:50px 50px;
+	-webkit-animation:move 2s linear infinite;
+	-moz-animation:move 2s linear infinite;
+	-ms-animation:move 2s linear infinite;
+	animation:move 2s linear infinite;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	-ms-border-radius:20px;
+	border-radius:20px;
+	overflow: hidden;
+	-webkit-box-shadow:inset 0 10px 0 rgba(255,255,255,.2);
+	-moz-box-shadow:inset 0 10px 0 rgba(255,255,255,.2);
+	-ms-box-shadow:inset 0 10px 0 rgba(255,255,255,.2);
+	box-shadow:inset 0 10px 0 rgba(255,255,255,.2);
+}
+
+/*
+Animate the stripes
+*/	
+@-webkit-keyframes move{
+  0% {
+  	background-position: 0 0;
+  }
+  100% {
+  	background-position: 50px 50px;
+  }
+}	
+@-moz-keyframes move{
+  0% {
+  	background-position: 0 0;
+  }
+  100% {
+  	background-position: 50px 50px;
+  }
+}	
+@-ms-keyframes move{
+  0% {
+  	background-position: 0 0;
+  }
+  100% {
+  	background-position: 50px 50px;
+  }
+}	
+@keyframes move{
+  0% {
+  	background-position: 0 0;
+  }
+  100% {
+  	background-position: 50px 50px;
+  }
+}	
+</style>
+

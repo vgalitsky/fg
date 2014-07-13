@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <CL_Smiffys>
+            <version>1.0.0.0</version>
+        </CL_Smiffys>
+    </modules>
+    <frontend>
+        <routers>
+            <smiffys>
+                <use>standard</use>
+                <args>
+                    <module>CL_Smiffys</module>
+                    <frontName>smiffys</frontName>
+                </args>
+            </smiffys>
+        </routers>
+        <translate>
+            <modules>
+                <CL_Smiffys>
+                    <files>
+                        <default>CL_Smiffys.csv</default>
+                    </files>
+                </CL_Smiffys>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <smiffys>
+                    <file>cl_smiffys.xml</file>
+                </smiffys>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        
+        <routers>
+            
+            <!--smiffys>
+                <use>admin</use>
+                <args>
+                    <module>CL_Smiffys</module>
+                    <frontName>smiffys</frontName>
+                </args>
+            </smiffys-->
+            
+            <adminhtml>
+                <args>
+                    <modules>
+                        <smiffys before="Mage_Adminhtml">CL_Smiffys_Adminhtml</smiffys>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+        <helpers>
+            <smiffys>
+                <class>CL_Smiffys_Helper</class>
+            </smiffys>
+        </helpers>
+        
+    </admin>
+    <global>
+        <resources>
+            <smiffys_setup>
+                <setup>
+                    <module>CL_Smiffys</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </smiffys_setup>
+            
+            <smiffys_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </smiffys_write>
+            <smiffys_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </smiffys_read>
+        </resources>
+        <blocks>
+            <smiffys>
+                <class>CL_Smiffys_Block</class>
+            </smiffys>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_view>CL_Smiffys_Block_Adminhtml_Sales_Order_View</sales_order_view>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <models>
+            <smiffys>
+                <class>CL_Smiffys_Model</class>
+                <resourceModel>smiffys_mysql4</resourceModel>
+            </smiffys>
+            <smiffys_mysql4>
+                <class>CL_Smiffys_Model_Mysql4</class>
+
+            </smiffys_mysql4>
+            
+        </models>
+        
+        <events>
+            <sales_order_save_after>
+                <observers>
+                    <smiffys_export>
+                        <class>smiffys/observer</class>
+                        <method>exportOrder</method>
+                    </smiffys_export>
+                </observers>
+            </sales_order_save_after>
+            <sales_order_view>
+                <observers>
+                    <smiffys_order_view>
+                        <class>smiffys/observer</class>
+                        <method>orderView</method>
+                    </smiffys_order_view>
+                </observers>
+            </sales_order_view>
+        </events>
+        
+        <helpers>
+            <smiffys>
+                <class>CL_Smiffys_Helper</class>
+            </smiffys>
+            <catalog>
+                <rewrite>
+                    <product_compare>CL_Smiffys_Helper_Product_Compare</product_compare>
+                </rewrite>
+            </catalog>
+        </helpers>
+
+    </global>
+
+    <adminhtml>
+        
+
+        <events>
+            <adminhtml_block_html_before>
+                <observers>
+                    <smiffys>
+                        <!-- Add column to catalog product grid -->
+                        <class>smiffys/adminhtml_observer</class>
+                        <method>onBlockHtmlBefore</method>
+                    </smiffys>
+                </observers>
+            </adminhtml_block_html_before>
+            
+            <eav_collection_abstract_load_before>
+                <observers>
+                    <smiffys>
+                
+                        <class>smiffys/adminhtml_observer</class>
+                        <method>onEavLoadBefore</method>
+                    </smiffys>
+                </observers>
+            </eav_collection_abstract_load_before>
+            
+            <catalog_product_collection_load_after>
+                <observers>
+                    <smiffys>
+                        <!-- Add column to product list -->
+                        <class>smiffys/adminhtml_observer</class>
+                        <method>onProductCollectionAfter</method>
+                    </smiffys>
+                </observers>
+            </catalog_product_collection_load_after>
+            
+        </events>
+               
+        <layout>
+            <updates>
+                <smiffys>
+                    <file>cl_smiffys.xml</file>
+                </smiffys>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <CL_Smiffys>
+                    <files>
+                        <default>CL_Smiffys.csv</default>
+                    </files>
+                </CL_Smiffys>
+            </modules>
+        </translate>
+        
+        
+        
+        
+    </adminhtml>
+    
+    <default>
+        
+        <smiffys_catalog>                
+            <updater>
+                <inventory_schedule>* */24 * * *</inventory_schedule>
+            </updater>
+        </smiffys_catalog>
+        
+        <smiffys_catalog>                
+            <updater>
+                <price_schedule>* */24 * * *</price_schedule>
+            </updater>
+        </smiffys_catalog>
+        
+        <smiffys_orders>                
+            <tracker>
+                <schedule>* */12 * * *</schedule>
+            </tracker>
+        </smiffys_orders>
+        
+    
+    </default>
+    
+    <crontab>
+        
+        <jobs>                
+            <cl_smiffys_order_tracker>
+                <schedule>
+                    <config_path>smiffys_orders/tracker/schedule</config_path>
+                </schedule>
+                <run>
+                    <model>smiffys/observer::trackOrders</model>
+                </run>
+            </cl_smiffys_order_tracker>
+            
+            <cl_smiffys_inventory_update>
+                <schedule>
+                    <config_path>smiffys_catalog/updater/inventory_schedule</config_path>
+                    <!--cron_expr>*/5 * * * *</cron_expr-->
+
+                </schedule>
+                <run>
+                    <model>smiffys/observer::updateInventory</model>
+                </run>
+            </cl_smiffys_inventory_update>
+            <cl_smiffys_price_update>
+                <schedule>
+                    <config_path>smiffys_catalog/updater/price_schedule</config_path>
+                </schedule>
+                <run>
+                    <model>smiffys/observer::updatePrices</model>
+                </run>
+            </cl_smiffys_price_update>
+        </jobs>
+        
+    </crontab>
+    
+    
+</config>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_system_config_edit>
+           <reference name="head">
+                <action method="addJs"><script>wio/smiffys/wiosmiffys.js</script></action>
+            </reference>
+            <reference name="content">
+        	<block type="wiosmiffys/adminhtml_progress" name="wiosmiffys_progress" template="wio/smiffys/progress.phtml"/>
+            </reference>
+    </adminhtml_system_config_edit>
+</layout>

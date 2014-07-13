@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <CL_Shared>
+            <version>1.0.0.0</version>
+        </CL_Shared>
+    </modules>
+    <frontend>
+        <routers>
+            <cl>
+                <use>standard</use>
+                <args>
+                    <module>CL_Shared</module>
+                    <frontName>cl</frontName>
+                </args>
+            </cl>
+        </routers>
+        <translate>
+            <modules>
+                <CL_Shared>
+                    <files>
+                        <default>CL_Shared.csv</default>
+                    </files>
+                </CL_Shared>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <cl>
+                    <file>cl_shared.xml</file>
+                </cl>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        
+        <routers>
+            <!--locator>
+                <use>admin</use>
+                <args>
+                    <module>CL_Locator</module>
+                    <frontName>locator</frontName>
+                </args>
+            </locator-->
+            <adminhtml>
+                 <args>
+                     <modules>
+                         <cl before="Mage_Adminhtml">CL_Shared_Adminhtml</cl>
+                     </modules>
+                 </args>
+             </adminhtml>
+        </routers>
+        <helpers>
+            <cl>
+                <class>CL_Shared_Helper</class>
+            </cl>
+        </helpers>
+        
+    </admin>
+    <global>
+        <resources>
+            <cl_setup>
+                <setup>
+                    <module>CL_Shared</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </cl_setup>
+            
+            <cl_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </cl_write>
+            <cl_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </cl_read>
+        </resources>
+        <blocks>
+            <cl>
+                <class>CL_Shared_Block</class>
+            </cl>
+        </blocks>
+        <models>
+            <cl>
+                <class>CL_Shared_Model</class>
+                <resourceModel>locator_mysql4</resourceModel>
+            </cl>
+            <cl_mysql4>
+                <class>CL_Shared_Model_Mysql4</class>
+
+            </cl_mysql4>
+            
+        </models>
+        <helpers>
+            <cl>
+                <class>CL_Shared_Helper</class>
+            </cl>
+        </helpers>
+
+    </global>
+
+    <adminhtml>
+       
+        <layout>
+            <updates>
+                <cl>
+                    <file>cl_shared.xml</file>
+                </cl>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <CL_Shared>
+                    <files>
+                        <default>CL_Shared.csv</default>
+                    </files>
+                </CL_Shared>
+            </modules>
+        </translate>
+        
+    </adminhtml>
+</config>

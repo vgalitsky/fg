@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @package Smiffys Webservices
+ * @autor Victor Galitsky
+ * @copyright (c) 2013, Victor Galitsky
+ */
+-->
+<config>
+    <tabs>
+        <wio translate="label" module="wiosmiffys">
+            <label>WIO</label>
+            <sort_order>100</sort_order>
+        </wio>
+    </tabs>
+    <sections>
+        <wiosmiffys translate="label" module="wiosmiffys">
+            <label>Smiffys Import</label>
+            <tab>wio</tab>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <credentials translate="label" module="wiosmiffys">
+                    <label>Credentials</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <webservice_products>
+                            <label>Products Webservice URL:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </webservice_products>
+                        
+                        <client_id translate="label">
+                            <label>Client Id:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </client_id>
+                        <api_key translate="label">
+                            <label>Api Key:</label>
+                            <comment></comment>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_key>
+                    </fields>
+                </credentials>
+                <general>
+                    <label>Store Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1010</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <import_website translate="label">
+                            <label>Website:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_website</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_website>                        
+                        <import_store translate="label">
+                            <label>Store:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_store</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_store>
+                    </fields>
+                    
+                </general>
+                <import_category>
+            	    <label>Categories Import Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        
+                        <root_category>
+                            <label>Root Category Name:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </root_category>
+                        
+                        <import>
+                            <label></label>
+                            <comment>Do not forget to save config changes before run import</comment>
+                            <frontend_type>button</frontend_type>
+                            <url>adminhtml/wiosmiffys/importCategories</url>
+                            <!--frontend_model>WIO_Smiffys_Block_Adminhtml_Config_Form_Button</frontend_model-->
+                            <frontend_model>WIO_Smiffys_Block_Adminhtml_Config_Form_Button</frontend_model>
+                            <text>Run Import Now</text>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                        
+                        
+                    </fields>
+                </import_category>
+                <import_product>
+            	    <label>Product Import Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <import_tax_class translate="label">
+                            <label>Tax Class:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>wiosmiffys/system_config_source_taxclass</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_tax_class>
+                        <import_attribute_set_id translate="label">
+                            <label>Attribute set:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>wiosmiffys/system_config_source_product_attributeset</source_model>
+                            <sort_order>85</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_attribute_set_id>
+                        <drop_category_id translate="label">
+                            <label>Drop Category:</label>
+                            <comment>Drop product into selected category if appropriate one not found</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>wiosmiffys/system_config_source_category</source_model>
+                            <sort_order>95</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </drop_category_id>
+
+                        <img_path>
+                            <label>Path to original product images:</label>
+                            <comment>Relative to your magento installation path</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </img_path>
+                        <limit>
+                            <label>Limit</label>
+                            <comment>Set to "0" to disable limit.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>115</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit>
+                        <refresh>
+                            <label>Progress refresh frequency (ms)</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>116</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </refresh>
+                        <import>
+                            <label></label>
+                            <comment>Do not forget to save config changes before run import. Categries must imported BEFORE brofuct import</comment>
+                            <frontend_type>button</frontend_type>
+                            <!--url>adminhtml/wiosmiffys/importProducts</url-->
+                            <!--frontend_model>WIO_Smiffys_Block_Adminhtml_Config_Form_Button</frontend_model-->
+                            <frontend_model>WIO_Smiffys_Block_Adminhtml_Config_Form_Button</frontend_model>
+                            <text>Run Import Now</text>
+                            <click>smiffysProductImport();</click>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                        
+                        
+                    </fields>
+                </import_product>
+            </groups>
+        </wiosmiffys>
+    </sections>
+</config>

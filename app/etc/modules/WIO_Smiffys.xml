@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <WIO_Smiffys>
+            <active>true</active>
+            <codePool>local</codePool>
+        </WIO_Smiffys>
+    </modules>
+</config>

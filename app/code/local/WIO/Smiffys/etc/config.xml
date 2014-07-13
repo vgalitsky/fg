@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package Smiffys Webservices
+ * @autor Victor Galitsky
+ * @copyright (c) 2013, Victor Galitsky
+ */
+-->
+<config>
+    <modules>
+        <WIO_Smiffys>
+            <version>0.0.1</version>
+        </WIO_Smiffys>
+    </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <wiosmiffys before="Mage_Adminhtml">WIO_Smiffys_Adminhtml</wiosmiffys>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+        <helpers>
+            <wiosmiffys>
+                <class>WIO_Smiffys_Helper</class>
+            </wiosmiffys>
+        </helpers>
+    </admin>
+    <global>
+        <resources>
+            <wiosmiffys_setup>
+                <setup>
+                    <module>WIO_Smiffys</module>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </wiosmiffys_setup>
+            <wiosmiffys_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </wiosmiffys_write>
+            <wiosmiffys_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </wiosmiffys_read>
+        </resources>
+        <blocks>
+            <wiosmiffys>
+                <class>WIO_Smiffys_Block</class>
+            </wiosmiffys>
+        </blocks>
+        <models>
+            <wiosmiffys>
+                <class>WIO_Smiffys_Model</class>
+                <resourceModel>wiosmiffys_mysql4</resourceModel>
+            </wiosmiffys>
+            <wiosmiffys_mysql4>
+                <class>WIO_Smiffys_Model_Mysql4</class>
+
+            </wiosmiffys_mysql4>
+        </models>
+        <helpers>
+            <wiosmiffys>
+                <class>WIO_Smiffys_Helper</class>
+            </wiosmiffys>
+        </helpers>
+
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <wiosmiffys>
+                    <file>wio_smiffys.xml</file>
+                </wiosmiffys>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <WIO_Smiffys>
+                    <files>
+                        <default>WIO_Smiffys.csv</default>
+                    </files>
+                </WIO_Smiffys>
+            </modules>
+        </translate>
+    </adminhtml>
+    
+    <default>
+	<wiosmiffys>
+	     <credentials>
+	        <webservice_products>http://staging.smiffys.com/services/products.asmx</webservice_products>
+	     </credentials>
+             <import_category>
+                 <root_category>SMIFFYS_ROOT_CATEGORY</root_category>
+             </import_category>
+             <import_product>
+                 <limit>0</limit>
+                 <refresh>1000</refresh>
+                 <import_tax_class>2</import_tax_class>
+                 <import_attribute_set_id>4</import_attribute_set_id>
+                 <drop_category_id>2</drop_category_id>
+                 <img_path>var/smiffys/media/</img_path>
+             </import_product>
+	</wiosmiffys>
+    </default>
+    
+</config>

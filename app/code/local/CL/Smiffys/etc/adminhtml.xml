@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <smiffys>
+            <title>Smiffys webservice</title>
+            <children >
+                <importer translate="title" module="smiffys">
+                    <title>Importer</title>
+                    <action>adminhtml/importer</action>
+                </importer>
+            </children>
+            <!--children >
+                <products translate="title" module="smiffys">
+                    <title>Products</title>
+                    <children>
+                        <import>
+                            <title>Import Products</title>
+                            <action>adminhtml/sproducts/import</action>
+                        </import>
+                        <configurable>
+                            <title>Detect And Create Configurable Products</title>
+                            <action>adminhtml/sproducts/s2c</action>
+                        </configurable>
+                        <inventory_update>
+                            <title>Inventory Update</title>
+                            <action>adminhtml/sproducts/inventory</action>
+                        </inventory_update>
+                        <img_update>
+                            <title>Update Product Images</title>
+                            <action>adminhtml/sproducts/img</action>
+                        </img_update>
+                    </children>
+                </products>
+                <orders_export translate="title" module="smiffys">
+                    <title>Orders</title>
+                    <children>
+                        <export>
+                            <title>Export  Orders</title>
+                            <action>adminhtml/sorders/export</action>
+                        </export>
+                        <export_status>
+                            <title>Export  Status</title>
+                            <action>adminhtml/sorders/export_status</action>
+                        </export_status>
+                    </children>
+                </orders_export>
+            </children-->
+        </smiffys>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <smiffys>
+                        <title>Smiffys webservice -All</title>
+                    </smiffys>
+                    
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <smiffys>
+                                        <title>Smiffys - All</title>
+                                    </smiffys>
+                                    <smiffys_catalog>
+                                        <title>Smiffys - All</title>
+                                    </smiffys_catalog>
+                                    <smiffys_orders>
+                                        <title>Smiffys - All</title>
+                                    </smiffys_orders>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

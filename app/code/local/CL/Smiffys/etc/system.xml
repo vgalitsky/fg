@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <tabs>
+        <smiffys translate="label" module="smiffys">
+            <label>Smiffys Webservices</label>
+            <sort_order>100</sort_order>
+        </smiffys>
+    </tabs>
+    <sections>
+        <smiffys translate="label" module="smiffys">
+            <label>General</label>
+            <tab>smiffys</tab>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <credentials translate="label" module="smiffys">
+                    <label>Credentials</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <webservice>
+                            <label>Webservice url:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </webservice>
+                        <client_id translate="label">
+                            <label>Client Id:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </client_id>
+                        <api_key translate="label">
+                            <label>Api Key:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_key>
+                        <transport translate="label">
+                            <label>Transport method:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smiffys/system_config_source_transport_type</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </transport>
+                    </fields>
+                </credentials>
+            </groups>
+        </smiffys>
+        
+        <smiffys_catalog translate="label" module="smiffys">
+            <label>Catalog</label>
+            <tab>smiffys</tab>
+            <sort_order>2000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <!--category translate="label" module="smiffys">
+                    <label>Category</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <export translate="label">
+                            <label>Export CSV</label>
+                            <comment>Export current category tree</comment>
+                            <frontend_type>submit</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </export>
+                        <import translate="label">
+                            <label>Import CSV</label>
+                            <comment></comment>
+                            <frontend_type>file</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                    </fields>
+                </category-->
+                
+                <import translate="label" module="smiffys">
+                    <label>Import settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        
+                        <!--update_price_limit>
+                            <label>Update Price  Limit:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </update_price_limit-->
+                        
+                        
+                        <!--exists_action translate="label">
+                            <label>If exists:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smiffys/system_config_source_updatereplace</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </exists_action-->                        
+                        <import_website translate="label">
+                            <label>Website:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_website</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_website>
+                        <import_store translate="label">
+                            <label>Store:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_store</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_store>
+                        
+                        <import_category translate="label">
+                            <label>Category:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smiffys/system_config_source_category</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_category>
+                        
+                        <import_tax_class translate="label">
+                            <label>Tax Class Id:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_tax_class>
+                        
+                        <import_attribute_set_id translate="label">
+                            <label>Attribute set id:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>85</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_attribute_set_id>
+                        
+                        <!--import_images_source translate="label">
+                            <label>Import Source:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smiffys/system_config_source_import_image_source</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_images_source-->
+                        <images_local_path translate="label">
+                            <label>Local images path:</label>
+                            <comment><![CDATA[Relative to <project path>/Smiffys/data/<br/>
+                                Will try to allocate images at local path. If image not found URL will be used.]]>
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>95</sort_order>
+                            <!--depends>import_images_source</depends-->
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </images_local_path>
+
+                                                
+                        <images_url translate="label">
+                            <label>Import images from URL:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <!--depends>import_images_source</depends-->
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </images_url>
+                        
+                        <limit>
+                            <label>Import Limit:</label>
+                            <comment>Debug purpose. Put "0" to disable limit </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1000</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit>
+                    </fields>
+                </import>  
+                <updater>
+                    <label>Update Catalog config</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2400</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <inventory_schedule translate="label">
+                            <label>Update inventory schedule:</label>
+                            <frontend_type>text</frontend_type>
+                            <comment_><![CDATA[
+*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*  command to be executed<br/>
+                                
+┬    ┬    ┬    ┬    ┬<br/>
+│    │    │    │    │<br/>
+│    │    │    │    │<br/>
+│    │    │    │    └───── day of week (0 - 7) (0 or 7 are Sunday, or use names)<br/>
+│    │    │    └────────── month (1 - 12)<br/>
+│    │    └─────────────── day of month (1 - 31)<br/>
+│    └──────────────────── hour (0 - 23)<br/>
+└───────────────────────── min (0 - 59)<br/>
+                            ]]></comment_>                            
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </inventory_schedule>                       
+                        <price_schedule translate="label">
+                            <label>Update Price schedule:</label>
+                            <frontend_type>text</frontend_type>
+                            <comment_><![CDATA[
+*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*  command to be executed<br/>
+                                
+┬    ┬    ┬    ┬    ┬<br/>
+│    │    │    │    │<br/>
+│    │    │    │    │<br/>
+│    │    │    │    └───── day of week (0 - 7) (0 or 7 are Sunday, or use names)<br/>
+│    │    │    └────────── month (1 - 12)<br/>
+│    │    └─────────────── day of month (1 - 31)<br/>
+│    └──────────────────── hour (0 - 23)<br/>
+└───────────────────────── min (0 - 59)<br/>
+                            ]]></comment_>                            
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price_schedule>                                                
+                    </fields>
+                </updater>
+                <s2c translate="label" module="smiffys">
+                    <label>Configurable products conversion settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2500</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!--exists_action translate="label">
+                            <label>If exists:</label>
+                            <class>disabled</class>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smiffys/system_config_source_updatereplace</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </exists_action-->                        
+                        
+                        <category translate="label">
+                            <label>Category:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smiffys/system_config_source_s2c_samechoose</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </category>
+                        
+                        <default_category translate="label">
+                            <label>Specifyc Category:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smiffys/system_config_source_category</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <category>default</category>
+                            </depends>
+                        </default_category>
+                        
+                        
+                        
+                        
+                    </fields>
+                </s2c>  
+                
+            </groups>
+        </smiffys_catalog>
+        
+        <smiffys_orders translate="label" module="smiffys">
+            <label>Orders service</label>
+            <tab>smiffys</tab>
+            <sort_order>3000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <credentials translate="label" module="smiffys">
+                    <label>Credentials</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!--webservice>
+                            <label>Webservice url:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </webservice-->
+                        <client_id translate="label">
+                            <label>Client Id:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </client_id>
+                        <api_key translate="label">
+                            <label>Api Key:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_key>
+                        <delivery_code>
+                            <label>Delivery Code:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </delivery_code>
+
+                    </fields>
+                </credentials>
+                <!--setup translate="label" module="smiffys">
+                    <label>Setup</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <api>
+                            <label>Orders API:</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api>
+                    </fields>
+                </setup-->
+                <export translate="label" module="smiffys">
+                    <label>Export settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <export_status translate="label">
+                            <label>Order status to export instantly:</label>
+                            <comment>Export orders when status changed to selected above.</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </export_status>
+                        
+                        <export_success_status translate="label">
+                            <label>Success Order Status:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </export_success_status>
+                        <export_fail_status translate="label">
+                            <label>Fail status:</label>
+                            <comment>Order status if export fails</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </export_fail_status>
+                        <order_xml>
+                            <label>Order XML template:</label>
+                            <comment>Order export template</comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_xml>
+                        <order_line_xml>
+                            <label>Order Line XML template:</label>
+                            <comment>Product XML</comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_line_xml>
+                    </fields>
+                </export>
+                <tracker translate="label" module="smiffys">
+                    <label>Track settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <schedule translate="label">
+                            <label>Cron job schedule:</label>
+                            <comment_><![CDATA[
+*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*  command to be executed<br/>
+                                
+┬    ┬    ┬    ┬    ┬<br/>
+│    │    │    │    │<br/>
+│    │    │    │    │<br/>
+│    │    │    │    └───── day of week (0 - 7) (0 or 7 are Sunday, or use names)<br/>
+│    │    │    └────────── month (1 - 12)<br/>
+│    │    └─────────────── day of month (1 - 31)<br/>
+│    └──────────────────── hour (0 - 23)<br/>
+└───────────────────────── min (0 - 59)<br/>
+                            ]]></comment_>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </schedule>
+                        <traker_status translate="label">
+                            <label>Request track code for orders with staus:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </traker_status>
+                        <traker_success_status translate="label">
+                            <label>Order status with recieved Track code:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </traker_success_status>
+                        <traker_create_invoice translate="label">
+                            <label>Create invoice:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </traker_create_invoice>
+                        <traker_create_shipment translate="label">
+                            <label>Create Shipment:</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </traker_create_shipment>
+                    </fields>
+                </tracker>
+            </groups>
+        </smiffys_orders>
+        
+    </sections>
+</config>
