@@ -1,0 +1,152 @@
+<style>
+    .left-batch-form{
+        position:fixed;
+    }
+    .left-batch-form ul li{
+        margin-top:5px;
+    }
+    .left-batch-form ul li label{
+        margin-left:10px;
+    }
+</style>
+<div class="left-batch-form">
+    <h3>Select actions to process:</h3>
+    <form id="smiffys_batch" method="post" 
+        action="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/importer/batch/"); ?>"
+    >
+        <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+        <input type="hidden" name="import" value="1"/>
+        <ul>
+            <li> 
+                <input class="b-disablable" type="checkbox" name="batch[category]" id="importer.categories" /> <label for="importer.categories"><a href="#h-category" >Import Categories</a></label>
+            </li>
+            <li> 
+                <input class="b-disablable" type="checkbox" name="batch[products]" id="importer.products" /> <label for="importer.products"><a href="#h-product">Import Products</a></label>
+            </li>
+            <li> 
+                <input class="b-disablable" type="checkbox" name="batch[s2c]" id="importer.s2c" /> <label for="importer.s2c"><a href="#h-s2c">Create Configurable Products</a></label>
+            </li>
+            <li> 
+                <input class="b-disablable" type="checkbox" name="batch[p2c]" id="importer.p2c" /> <label for="importer.p2c"><a href="#h-p2c">Assign products to Category Tree</a></label>
+            </li>
+            <li> 
+                <input class="b-disablable" type="checkbox" name="batch[inventory]" id="importer.inventory" /> <label for="importer.inventory"><a href="#h-inventory">Update Inventory</a></label>
+            </li>
+            <li> 
+                <input class="b-disablable" type="checkbox" name="batch[price]" id="importer.price" /> <label for="importer.price"><a href="#h-price">Update Prices</a></label>
+            </li>
+            <li> 
+                <input class="b-disablable" type="checkbox" name="batch[media]" id="importer.media" /> <label for="importer.price"><a href="#h-media">Update Media</a></label>
+            </li>
+            <li> 
+                <input class="b-disablable" type="checkbox" name="batch[names]" id="importer.names" /> <label for="importer.price"><a href="#h-price">Update Assotiated product names</a></label>
+            </li>
+            <!--li> 
+                <input disabled="disabled" class="b-disablable" type="checkbox" name="batch[reindex]" id="importer.reindex" /> <label for="importer.inventory"><a href="#h-reindex">Reindex data</a></label>
+            </li>
+            <li> 
+                <input disabled="disabled" class="b-disablable" type="checkbox" name="batch[cache]" id="importer.reindex" /> <label for="importer.cace"><a href="#h-cache">Clear cache</a></label>
+            </li-->
+        </ul>
+        <br/>
+        <br/>
+        <hr/>
+        <button title="Start Batch processing" type="submit" class="b-disablable ">
+            <span><span><span>Start Batch Processing</span></span></span>
+        </button>
+    </form>
+</div>
+
+
+
+<script>
+    var batches = new Array();
+    jQuery('#smiffys_batch').submit(function(){
+
+        //jQuery('#smiffys_batch input').attr('disabled','disabled');
+        jQuery('input[name*=batch]:checked').each(function(){
+            batches.push( jQuery(this).attr('name').replace(/batch\[(.*?)\]/,"$1") );
+            
+        });
+        batches.reverse()
+        nextBatch();
+        return false;
+    });
+    
+    function exclusiveBatch( item ){
+        toggleBatchActions( true );
+        location.href='#anchor-'+item;
+        jQuery('#batch-result-'+item).show('slow');
+        jQuery.getJSON(
+            '<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/importer/batch/"); ?>'+'item/'+item,
+            function(data){
+                if ( data.ok ){
+                    checkStatus( item, true );
+                }
+            }
+        );
+    }
+    
+    function nextBatch(){
+        toggleBatchActions( true );
+        var item = batches.pop();
+        if ( !item ){
+            alert('Batch processing done');
+            toggleBatchActions( false );
+            return false;
+        }
+        location.href='#anchor-'+item;
+        jQuery('#batch-result-'+item).show('slow');
+        jQuery.getJSON(
+            '<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/importer/batch/"); ?>'+'item/'+item,
+            function(data){
+                if ( data.ok ){
+                    checkStatus( item );
+                }
+            }
+        );
+    }
+    
+    function checkStatus( item, exclusive ){
+        jQuery.getJSON(
+         '<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/importer/checkStatus/"); ?>'+'status/'+item,
+           function( data ){
+               
+               
+               if(data.content){
+                jQuery('#'+item+'-log').html( data.content.replace(/\n/g,'<br>') )
+                .animate({scrollTop: jQuery('#'+item+'-log').get(0).scrollHeight },500);
+                
+                
+               }
+               //jQuery('#'+item+'-log').animate({scrollBottom: jQuery('#'+item+'-log').height() },'fast');
+               //jQuery('#'+item+'-log').attr({scrollTop: jQuery('#'+item+'-log').attr('scrollHeight') });
+               
+                if( !data.done  ){
+                    setTimeout(function(){
+                     checkStatus( item )
+                 }, 1000);
+                }else{
+                      if(!exclusive){ 
+                          nextBatch();
+                      }else{
+                          toggleBatchActions( false );
+                      }
+                }
+           } 
+        );
+        
+    }
+    
+    function toggleBatchActions( disable ){
+        if(disable){
+            jQuery('.b-disablable').attr('disabled','disabled');
+            jQuery('.b-disablable').addClass('disabled');
+        }else{
+            jQuery('.b-disablable').attr('disabled',null);
+            jQuery('.b-disablable').removeClass('disabled');
+        }
+        
+    }
+    
+</script>

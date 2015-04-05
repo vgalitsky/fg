@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * IDEALIAGroup srl
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.idealiagroup.com/magento-ext-license.html
+ *
+ * @category   IG
+ * @package    IG_NamedImages
+ * @copyright  Copyright (c) 2010-2011 IDEALIAGroup srl (http://www.idealiagroup.com)
+ * @license    http://www.idealiagroup.com/magento-ext-license.html
+ */
+-->
+<config>
+	<modules>
+		<IG_NamedImages>
+			<version>1.0.0</version>
+		</IG_NamedImages>
+	</modules>
+	<global>
+		<helpers>
+			<ig_namedimages>
+				<class>IG_NamedImages_Helper</class>
+			</ig_namedimages>
+			
+			<catalog>
+				<rewrite>
+					<image>IG_NamedImages_Helper_Image</image>
+				</rewrite>
+			</catalog>
+        </helpers>
+		
+		<models>
+			<ig_namedimages>
+				<class>IG_NamedImages_Model</class>
+			</ig_namedimages>
+			
+			<catalog>
+				<rewrite>
+					<product_image>IG_NamedImages_Model_Product_Image</product_image>
+				</rewrite>
+			</catalog>
+        </models>
+	</global>
+		
+	<adminhtml>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<ig_namedimages translate="title" module="ig_namedimages">
+											<title>IG NamedImages</title>
+											<sort_order>1000</sort_order>
+										</ig_namedimages>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+    </adminhtml>
+		
+	<default>
+		<ig_namedimages>
+			<general>
+				<enabled>1</enabled>
+			</general>
+		</ig_namedimages>
+	</default>
+</config>

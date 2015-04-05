@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_importer_index>
+         <reference name="left">
+            <block type="smiffys/adminhtml_importer" name="smiffys.importer.left" template="cl/smiffys/importer/left.phtml"></block>
+        </reference>
+        <reference name="content">
+            <block type="smiffys/adminhtml_importer" name="smiffys.importer.content" template="cl/smiffys/importer/content.phtml"></block>
+        </reference>
+    </adminhtml_importer_index>
+    
+    <!--adminhtml_sproducts_import>
+         <reference name="left">
+            <block type="smiffys/adminhtml_product_import" name="smiffys.product.import.left" template="cl/smiffys/product/import/left.phtml"></block>
+        </reference>
+        <reference name="content">
+            <block type="smiffys/adminhtml_product_import" name="smiffys.product.import.content" template="cl/smiffys/product/import/content.phtml"></block>
+        </reference>
+    </adminhtml_sproducts_import>
+    
+    <adminhtml_sproducts_s2c>
+         <reference name="left">
+            <block type="smiffys/adminhtml_product_import" name="smiffys.product.s2c.left" template="cl/smiffys/product/s2c/left.phtml"></block>
+        </reference>
+        <reference name="content">
+            <block type="smiffys/adminhtml_product_import" name="smiffys.product.s2c.content" template="cl/smiffys/product/s2c/content.phtml"></block>
+        </reference>
+    </adminhtml_sproducts_s2c>
+
+    <adminhtml_sproducts_inventory>
+        <reference name="left">
+            <block type="smiffys/adminhtml_product_inventory" name="smiffys.product.inventory.left" template="cl/smiffys/product/inventory/left.phtml"></block>
+        </reference>
+        <reference name="content">
+            <block type="smiffys/adminhtml_product_inventory" name="smiffys.product.inventory.content" template="cl/smiffys/product/inventory/content.phtml"></block>
+        </reference>
+    </adminhtml_sproducts_inventory>
+    
+    <adminhtml_sorders_exportAll>
+        <reference name="left">
+            <block type="smiffys/adminhtml_order_export" name="smiffys.order.export.left" template="cl/smiffys/order/export/left.phtml"></block>
+        </reference>
+        <reference name="content">
+            <block type="smiffys/adminhtml_order_export" name="smiffys.order.export.content" template="cl/smiffys/order/export/content.phtml"></block>
+        </reference>
+    </adminhtml_sorders_exportAll-->
+
+</layout>

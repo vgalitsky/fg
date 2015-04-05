@@ -44,7 +44,7 @@ extends WIO_Smiffys_Model_Transport_Abstract{
         }catch( Exception $e ){
             throw new Exception( $e->getMessage().' : '.$rawResult );
         }
-        
+
         $this->setResponse( $xml );
         return $this;
     }

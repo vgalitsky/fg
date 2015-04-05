@@ -19,7 +19,7 @@ class WIO_Smiffys_Model_Import_Category {
     
     protected function _init(){
         $this->_storeId = Mage::getStoreConfig('wiosmiffys/general/import_store');
-        $this->prepareRootCategory();
+        //$this->prepareRootCategory();
     }
 
     public function getTransport() {
@@ -33,7 +33,8 @@ class WIO_Smiffys_Model_Import_Category {
 
     public function import() {
         $this->getTransport()->exec();
-        $this->_import($this->getTransport()->getResponse());
+        die($this->getTransport()->getRawResponse().'asdasd');
+        $this->_import($this->getTransport()->getResponse().'asdasdasd');
         return $this;
     }
 

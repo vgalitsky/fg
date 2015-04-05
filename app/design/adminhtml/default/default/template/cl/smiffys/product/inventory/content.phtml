@@ -1,0 +1,21 @@
+<?php
+$inventory = Mage::getSingleton( 'smiffys/product_inventory' );
+?>
+<h2>Smiffys Webservice - Inventory Update</h2>
+Statistics:
+<table>
+    <tr>
+        <th>Updated</th>
+        <th>Skipped</th>
+    </tr>
+    <tr>
+        <td><?php echo $inventory->getUpdated() ?></td>
+        <td><?php echo $inventory->getSkipped() ?></td>
+    </tr>
+</table>
+<table>
+    
+</table>
+<!--div style="height:300px; " width="100%">
+    asfsdfsdfsdf
+</div-->

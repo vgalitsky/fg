@@ -1,4 +1,7 @@
-<!--@subject Payment Transaction Failed Reminder @-->
+{* This is a comment block
+
+Use vars: {{var var_name}}
+*}<!--@subject Zahlungs-Transaktion fehlgeschlagen Erinnerung @-->
 <!--@vars
 {"var reason":"Transaction Failed Reason",
 "var checkoutType":"Checkout Type",
@@ -16,7 +19,7 @@
 <table>
     <thead>
         <tr>
-            <th>Zahlungstransaktion fehlgeschlagen.</th>
+            <th>Zahlungs-Transaktion fehlgeschlagen.</th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +30,7 @@
                     {{var reason}}
                 </p>
                 <p>
-                    <b>Kassentyp</b><br />
+                    <b>Checkout Art</b><br />
                     {{var checkoutType}}
                 </p>
                 <p>
@@ -39,27 +42,27 @@
                     {{var items}}
                 </p>
                 <p>
-                    <b>Summe:</b><br />
+                    <b>Gesamtsumme:</b><br />
                     {{var total}}
                 </p>
                 <p>
-                    <b>Rechnungsanschrift:</b><br />
+                    <b>Rechnungsadresse:</b><br />
                     {{var billingAddress.format('html')}}
                 </p>
                 <p>
-                    <b>Lieferadresse:</b><br />
+                    <b>Versandadresse</b><br />
                     {{var shippingAddress.format('html')}}
                 </p>
                 <p>
-                    <b>Liefermethode:</b><br />
+                    <b>Versandart:</b><br />
                     {{var shippingMethod}}
                 </p>
                 <p>
-                    <b>Zahlungsform:</b><br />
+                    <b>Zahlungsart:</b><br />
                     {{var paymentMethod}}
                 </p>
                 <p>
-                    <b>Datum/Uhrzeit:</b><br />
+                    <b>Datum & Zeit</b><br />
                     {{var dateAndTime}}
                 </p>
             </td>

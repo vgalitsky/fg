@@ -1,8 +1,7 @@
-<!--@subject Account confirmation for {{var customer.name}} @-->
+<!--@subject Benutzerkonto Bestätigung für {{var customer.name}} @-->
 <!--@vars
 {"store url=\"\"":"Store Url",
-"var logo_url":"Email Logo Image Url",
-"var logo_alt":"Email Logo Image Alt",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
 "store url=\"customer/account/\"":"Customer Account Url",
 "htmlescape var=$customer.name":"Customer Name",
 "var customer.email":"Customer Email",
@@ -23,24 +22,26 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 <table bgcolor="FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
                     <tr>
                         <td valign="top">
-                            <a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin-bottom:10px;" border="0"/></a>
+                            <a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a>
                         </td>
                     </tr>
                     <!-- [ middle starts here] -->
                     <tr>
                         <td valign="top">
-                            <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Sehr geehrte(r) {{htmlescape var=$customer.name}},</h1>
-                            <p style="font-size:12px; line-height:16px; margin:0 0 16px 0;">Sie müssen Ihre E-Mail-Adresse {{var customer.email}} erst bestätigen, bevor Sie sich damit bei unserem Laden anmelden können.</p>
-                            <p style="font-size:12px; line-height:16px; margin:0 0 8px 0;">Wenn&#8201;Sie Ihre E-Mail-Adresse bestätigen und sich gleich danach anmelden möchten, rufen sie bitte <a href="{{store url="customer/account/confirm/" _query_id=$customer.id _query_key=$customer.confirmation _query_back_url=$back_url}}" style="color:#1E7EC8;">diesen Bestätigungslink auf</a>. Dieser Link ist nur zur einmaligen Verwendung gültig.</p>
+                            <h1 style="font-size:14px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Guten Tag {{htmlescape var=$customer.name}},</h1>
+                            <p style="font-size:12px; line-height:16px; margin:0 0 16px 0;">Ihre E-Mail-Adresse {{var customer.email}} muss bestätigt werden, bevor Sie sich damit in unserem Shop<br />anmelden können.</p>
+                            <p style="font-size:12px; line-height:16px; margin:0 0 8px 0;">Um die E-Mail-Adresse zu bestätigen, benutzen Sie bitte diesen <a href="{{store url="customer/account/confirm/" _query_id=$customer.id _query_key=$customer.confirmation _query_back_url=$back_url}}" style="color:#1E7EC8;">Bestätigungslink</a>.<br />Dieser Link ist nur einmal gültig.</p>
                             <p style="border:1px solid #E0E0E0; font-size:12px; line-height:16px; margin:0 0 16px 0; padding:13px 18px; background:#f9f9f9;">
-                                Geben&#8201;Sie die folgenden Werte ein, wenn Sie zur Anmeldung aufgefordert werden:<br/>
-                                <strong>E-Mail-Adresse:</strong> {{var customer.email}}<br/>
+                                Mit folgenden Zugangsdaten können Sie sich anschließend anmelden:<br/><br/>
+                                <strong>E-Mail:</strong> {{var customer.email}}<br/>
                                 <strong>Passwort:</strong> {{htmlescape var=$customer.password}}<p>
-                            <p style="font-size:12px; line-height:16px; margin:0;">Bei Fragen zu Ihrem Konto oder sonstigen Anliegen dürfen Sie sich jederzeit gerne an uns wenden unter <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> oder telefonisch unter der Rufnummer {{config path='general/store_information/phone'}}.</p>
-                        </td>
+                            <p style="font-size:12px; line-height:16px; margin:0;">
+							Falls Sie Fragen oder Anregungen haben, kontaktieren Sie uns bitte wahlweise per E-Mail
+							<a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a>
+							oder auch gerne per Telefon unter der Rufnummer {{config path='general/store_information/phone'}}.                        </td>
                     </tr>
                     <tr>
-                        <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center><p style="font-size:12px; margin:0;">Haben Sie nochmals recht herzlichen Dank, <strong>{{var store.getFrontendName()}}</strong></p></center></td>
+                        <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center><p style="font-size:12px; margin:0;">Vielen Dank für Ihr Vertrauen! <strong>{{var store.getFrontendName()}}</strong></p></center></td>
                     </tr>
                 </table>
             </td>

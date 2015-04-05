@@ -1,0 +1,16 @@
+<?php
+$s2c = Mage::getSingleton('smiffys/product_simple2conf');
+
+?>
+<h2>Smiffys Webservice - Create Configurable Products</h2>
+<strong>Statistics:</strong>
+<table>
+    <tr>
+        <th>Total Created</th>
+        <th>Total Skipped</th>
+    </tr>
+    <tr>
+        <td><?php echo $s2c->getUpdated() ?></td>
+        <td><?php echo $s2c->getSkipped() ?></td>
+    </tr>
+</table>

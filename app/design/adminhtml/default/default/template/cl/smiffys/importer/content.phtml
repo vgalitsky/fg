@@ -1,0 +1,371 @@
+<?php
+//$s2c = Mage::getSingleton('smiffys/product_import');
+?>
+<style>
+    .section{
+        margin-bottom:10px;
+    }
+    .section .head{
+        padding:5px 0px 1px 7px;
+        font-weight:bold;
+        background-color: silver;
+    }
+    .section .head .head-button-set{
+        float:right;
+        margin-right: 10px;
+
+    }
+    .section .table{
+        width:100%;
+        border:1px solid silver;
+    }
+    .section table td{
+        width:70%;
+    }
+    .section table tr:nth-child(even){
+        background-color:#efefef;
+    }
+    .section .button-set{
+
+    }
+</style>
+<div class="section">
+    <div class="head">
+        <a id="h-category"></a>
+        <div class="head-button-set">
+            <button title="Start" onclick="exclusiveBatch('category')" class="b-disablable">
+                <span><span><span>Start Exclusively</span></span></span>
+            </button>
+            <button title="Configure" onclick="location.href='<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/smiffys_catalog"); ?>'" class="b-disablable">
+                <span><span><span>Configure</span></span></span>
+            </button>
+        </div>
+        <h3>Category import setup</h3>
+    </div>
+    <div id="section-setup-category">
+        <table cellspacing="5" class="table">
+            <tr>
+                <th>File to process: </th>
+                <td><?php echo Mage::getModel('smiffys/category')->getDefaultFileName(); ?></td>
+            </tr>
+        </table>
+    </div>
+    <a id="anchor-category"></a>
+    <div class="batch-result" id="batch-result-category" style="display:none;">
+        <div class="log-area">
+            <div class="log" id="category-log">
+        
+            </div>
+            <div class="button-set">
+                <a href="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/batchreport/index/item/category");?>">
+                    <button title="Configure" onclick="">
+                        <span><span><span>View Report</span></span></span>
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="section">
+    <div class="head">
+        <a id="h-product"></a>
+        <div class="head-button-set">
+            <button title="Start" onclick="exclusiveBatch('products')" class="b-disablable">
+                <span><span><span>Start Exclusively</span></span></span>
+            </button>
+
+            <button title="Configure" onclick="location.href='<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/smiffys_catalog"); ?>'" class="b-disablable">
+                <span><span><span>Configure</span></span></span>
+            </button>
+        </div>
+
+        <h3>Product import setup</h3>
+    </div>
+    <div id="section-setup-products">
+    <table cellspacing="5" class="table">
+        <tr>
+            <th>Website Id: </th>
+            <td><?php echo Mage::getModel('smiffys/api_v1_smiffys')->getImportWebsite(); ?></td>
+        </tr>
+        <tr>
+            <th>Store Id: </th>
+            <td><?php echo Mage::getModel('smiffys/api_v1_smiffys')->getImportSore(); ?></td>
+        </tr>
+        <tr>
+            <th>Category Id: </th>
+            <td><?php echo Mage::getModel('smiffys/api_v1_smiffys')->getImportCategory(); ?></td>
+        </tr>
+        <tr>
+            <th>Tax Class Id: </th>
+            <td><?php echo Mage::getModel('smiffys/api_v1_smiffys')->getImportTaxClassId(); ?></td>
+        </tr>
+        <tr>
+            <th>Attribute Set Id: </th>
+            <td><?php echo Mage::getModel('smiffys/api_v1_smiffys')->getImportAttributeSetId(); ?></td>
+        </tr>
+        <tr>
+            <th>Import images local path (if exists): </th>
+            <td><?php echo Mage::getStoreConfig('smiffys_catalog/import/images_local_path') ?></td>
+        </tr>
+        <tr>
+            <th>Import images URL: </th>
+            <td><?php echo Mage::getStoreConfig('smiffys_catalog/import/images_url') ?></td>
+        </tr>
+
+    </table>
+    </div>
+    <a id="anchor-products"></a>
+        <div class="batch-result" id="batch-result-products" style="display:none;">
+        <div class="log-area">
+            <div class="log" id="products-log">
+            </div>
+            <div class="button-set">
+                <a href="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/batchreport/index/item/products");?>">
+                    <button  >
+                        <span><span><span>View Report</span></span></span>
+                    </button>
+                <a/>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- create configurable -->
+<div class="section">
+    <div class="head">
+        <a id="h-s2c"></a>
+        <div class="head-button-set">
+            <button title="Start" onclick="exclusiveBatch('s2c')" class="b-disablable">
+                <span><span><span>Start Exclusively</span></span></span>
+            </button>
+            <button title="Configure" onclick="location.href='<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/smiffys_catalog"); ?>'" class="b-disablable">
+                <span><span><span>Configure</span></span></span>
+            </button>
+        </div>
+        <h3>Configurable products setup</h3>
+    </div>
+    <div>
+        <table cellspacing="5" class="table">
+        </table>
+    </div>
+    
+    <a id="anchor-s2c"></a>
+    <div class="batch-result" id="batch-result-s2c" style="display:none;">
+        <div class="log-area">
+            <div class="log" id="s2c-log">
+        
+            </div>
+            <div class="button-set">
+                <a href="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/batchreport/index/item/s2c");?>">
+                    <button onclick="">
+                        <span><span><span>View Report</span></span></span>
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+<!-- category assign -->
+<div class="section">
+    <div class="head">
+        <a id="h-p2c"></a>
+        <div class="head-button-set">
+            <button title="Start" onclick="exclusiveBatch('p2c')" class="b-disablable">
+                <span><span><span>Start Exclusively</span></span></span>
+            </button>
+            <button title="Configure" onclick="location.href='<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/smiffys_catalog"); ?>'" class="b-disablable">
+                <span><span><span>Configure</span></span></span>
+            </button>
+        </div>
+        <h3>Category assign</h3>
+    </div>
+    <div>
+        <table cellspacing="5" class="table">
+        </table>
+    </div>
+    <a id="anchor-p2c"></a>
+    <div class="batch-result" id="batch-result-p2c" style="display:none;">
+        <div class="log-area">
+            <div class="log" id="p2c-log">
+        
+            </div>
+            <div class="button-set">
+                <a href="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/batchreport/index/item/p2c");?>">
+                    <button onclick="">
+                        <span><span><span>View Report</span></span></span>
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- inventory -->
+<div class="section">
+    <div class="head">
+        <a id="h-inventory"></a>
+        <div class="head-button-set">
+            <button title="Start" onclick="exclusiveBatch('inventory')" class="b-disablable">
+                <span><span><span>Start Exclusively</span></span></span>
+            </button>
+            <button title="Configure" onclick="location.href='<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/smiffys_catalog"); ?>'" class="b-disablable">
+                <span><span><span>Configure</span></span></span>
+            </button>
+        </div>
+        <h3>Inventory update</h3>
+    </div>
+    <table cellspacing="5" class="table">
+    </table>
+        <a id="anchor-inventory"></a>
+    <div class="batch-result" id="batch-result-inventory" style="display:none;">
+        <div class="log-area">
+            <div class="log" id="inventory-log">
+        
+            </div>
+            <div class="button-set">
+                <a href="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/batchreport/index/item/inventory");?>">
+                    <button onclick="">
+                        <span><span><span>View Report</span></span></span>
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- pricing -->
+<div class="section">
+    <div class="head">
+        <a id="h-price"></a>
+        <div class="head-button-set">
+            <button title="Start" onclick="exclusiveBatch('price')" class="b-disablable">
+                <span><span><span>Start Exclusively</span></span></span>
+            </button>
+            <!--button title="Configure" onclick="location.href='<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/smiffys_catalog"); ?>'" class="b-disablable">
+                <span><span><span>Configure</span></span></span>
+            </button-->
+        </div>
+        <h3>Update Prices</h3>
+    </div>
+    <table cellspacing="5" class="table">
+    </table>
+        <a id="anchor-price"></a>
+    <div class="batch-result" id="batch-result-price" style="display:none;">
+        <div class="log-area">
+            <div class="log" id="price-log">
+        
+            </div>
+            <div class="button-set">
+                <a href="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/batchreport/index/item/price");?>">
+                    <button onclick="">
+                        <span><span><span>View Report</span></span></span>
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- images -->
+<div class="section">
+    <div class="head">
+        <a id="h-media"></a>
+        <div class="head-button-set">
+            <button title="Start" onclick="exclusiveBatch('media')" class="b-disablable">
+                <span><span><span>Start Exclusively</span></span></span>
+            </button>
+            <!--button title="Configure" onclick="location.href='<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/smiffys_catalog"); ?>'" class="b-disablable">
+                <span><span><span>Configure</span></span></span>
+            </button-->
+        </div>
+        <h3>Update Images</h3>
+    </div>
+    <table cellspacing="5" class="table">
+    </table>
+        <a id="anchor-media"></a>
+    <div class="batch-result" id="batch-result-media" style="display:none;">
+        <div class="log-area">
+            <div class="log" id="media-log">
+        
+            </div>
+            <div class="button-set">
+                <a href="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/batchreport/index/item/media");?>">
+                    <button onclick="">
+                        <span><span><span>View Report</span></span></span>
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- names -->
+<div class="section">
+    <div class="head">
+        <a id="h-names"></a>
+        <div class="head-button-set">
+            <button title="Start" onclick="exclusiveBatch('names')" class="b-disablable">
+                <span><span><span>Start Exclusively</span></span></span>
+            </button>
+            <!--button title="Configure" onclick="location.href='<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/edit/section/smiffys_catalog"); ?>'" class="b-disablable">
+                <span><span><span>Configure</span></span></span>
+            </button-->
+        </div>
+        <h3>Update Assotiated product names</h3>
+    </div>
+    <table cellspacing="5" class="table">
+    </table>
+        <a id="anchor-names"></a>
+    <div class="batch-result" id="batch-result-names" style="display:none;">
+        <div class="log-area">
+            <div class="log" id="names-log">
+        
+            </div>
+            <div class="button-set">
+                <a href="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/batchreport/index/item/names");?>">
+                    <button onclick="">
+                        <span><span><span>View Report</span></span></span>
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .batch-result .log{
+        width:100%;
+        height:300px;
+        overflow-y:scroll;
+        padding:10px;
+        background-color:#333;
+        color:greenyellow;
+    }
+    .batch-result .button-set{
+        padding:1px;
+    }
+
+</style>
