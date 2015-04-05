@@ -13,7 +13,7 @@ abstract class WIO_Smiffys_Model_Transport_Abstract extends Mage_Core_Model_Abst
     
     const CMD_GET_CATEGORIES_LIST                = 'GetCategoryList';
     
-    const CMD_ORDER_SUBMIT                      =  'SubmitOrder'bg_nav;
+    const CMD_ORDER_SUBMIT                      =  'SubmitOrder';
     const CMD_ORDER_GET_STATUS                  =  'GetStatus';
     
     const SERVICE_PRODUCTS                      = 'products.asmx';

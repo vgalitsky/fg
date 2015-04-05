@@ -1181,7 +1181,7 @@ div.itemSubMenu {margin-left:0px;}
 /* Category Page ========================================================================= */
 .category-image { width:100%; overflow:hidden; margin:0 0 10px; text-align:center; }
 .category-image img {}
-.category-description { margin:0 0 10px; }
+.category-description { margin:0 0 0px; background-color: #fff; }
 .category-products {}
 
 /****************************************************************************************** View Type: Grid ***************************************************************************/

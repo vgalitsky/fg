@@ -29,6 +29,6 @@ class IG_NamedImages_Model_Product_Image extends Mage_Catalog_Model_Product_Imag
 
 		$this->_newFile = preg_replace('/\/[^\/]+\.\w+$/', '/'.$imageName, $this->_newFile);
 		
-		return $return;
+		return $this;
 	}
 }

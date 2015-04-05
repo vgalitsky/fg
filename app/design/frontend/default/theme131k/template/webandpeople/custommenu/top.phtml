@@ -12,7 +12,7 @@
             </div>
         </div>
         <?php endif ?>
-        <?php echo $_imgHtml ?>
+        <?php echo isset($_imgHtml) ? $_imgHtml : '' ?>
         <?php foreach ($_categories as $_category): ?>
             <?php echo $this->drawCustomMenuItem($_category) ?>
 

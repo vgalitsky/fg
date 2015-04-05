@@ -35,7 +35,7 @@
 <?php else: ?>
 <?php $d = ('logout-class'); ?>
 <?php endif ?> 
-<div class="account-login-home <?php echo $d ?>"> <span class="btn-log">
+<div class="account-login-home <?php echo isset($d) ? $d : '' ?>"> <span class="btn-log">
 <?php if (Mage::getSingleton('customer/session')->isLoggedIn()==0): ?>
 <?php echo $this->__('Log In') ?>
 <?php else: ?>
